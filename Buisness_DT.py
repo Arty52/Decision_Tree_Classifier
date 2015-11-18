@@ -1,3 +1,8 @@
+"""
+Authors: Art Grichine, Adam Beck
+References: http://chrisstrelioff.ws/sandbox/2015/06/08/decision_trees_in_python_with_scikit_learn_and_pandas.html
+"""
+
 import os
 import subprocess
 
@@ -57,19 +62,25 @@ def get_code(tree, feature_names, target_names,
     features  = [feature_names[i] for i in tree.tree_.feature]
     value = tree.tree_.value
 
+    code = []
+
     def recurse(left, right, threshold, features, node, depth):
         spacer = spacer_base * depth
         if (threshold[node] != -2):
             print(spacer + "if ( " + features[node] + " <= " + \
                   str(threshold[node]) + " ) {")
+            code.append(spacer + "if ( " + features[node] + " <= " + \
+                  str(threshold[node]) + " ) {")
             if left[node] != -1:
                     recurse(left, right, threshold, features,
                             left[node], depth+1)
             print(spacer + "}\n" + spacer +"else {")
+            code.append(spacer + "}\n" + spacer +"else {")
             if right[node] != -1:
                     recurse(left, right, threshold, features,
                             right[node], depth+1)
             print(spacer + "}")
+            code.append(spacer + "}")
         else:
             target = value[node]
             for i, v in zip(np.nonzero(target)[1],
@@ -78,8 +89,15 @@ def get_code(tree, feature_names, target_names,
                 target_count = int(v)
                 print(spacer + "return " + str(target_name) + \
                       " ( " + str(target_count) + " examples )")
+                code.append(spacer + "return " + str(target_name) + \
+                      " ( " + str(target_count) + " examples )")
 
     recurse(left, right, threshold, features, 0, 0)
+    
+    # Save code to file
+    with open('code.txt', 'w') as file:
+        for line in code:
+            file.write('{}\n'.format(line))
 
 def main():
     df = get_business_data()
@@ -92,8 +110,12 @@ def main():
 
     y = df["Business_Category"]
     X = df[features]
+    
+    # Use min_samples_split=20 to declare leaf bin if sample < 20
     dt = DecisionTreeClassifier(min_samples_split=20, random_state=99, criterion='entropy')
     # dt = DecisionTreeClassifier(random_state=99, criterion='entropy')
+    
+    
     dt.fit(X,y)
     
     visualize_tree(dt, features)

@@ -1,0 +1,95 @@
+if ( Detergent <= 1746.5 ) {
+    if ( Grocery <= 4480.5 ) {
+        if ( Delicatessan <= 3403.5 ) {
+            return Restaurant ( 200 examples )
+        }
+        else {
+            return Restaurant ( 5 examples )
+            return Retail ( 1 examples )
+        }
+    }
+    else {
+        if ( Detergent <= 507.5 ) {
+            return Restaurant ( 30 examples )
+        }
+        else {
+            if ( Detergent <= 957.5 ) {
+                if ( Delicatessan <= 2320.5 ) {
+                    return Restaurant ( 10 examples )
+                    return Retail ( 7 examples )
+                }
+                else {
+                    return Restaurant ( 6 examples )
+                }
+            }
+            else {
+                return Restaurant ( 17 examples )
+            }
+        }
+    }
+}
+else {
+    if ( Milk <= 5760.5 ) {
+        if ( Milk <= 2609.0 ) {
+            return Restaurant ( 9 examples )
+            return Retail ( 2 examples )
+        }
+        else {
+            if ( Delicatessan <= 687.5 ) {
+                return Restaurant ( 1 examples )
+                return Retail ( 15 examples )
+            }
+            else {
+                if ( Grocery <= 8546.5 ) {
+                    return Restaurant ( 8 examples )
+                    return Retail ( 3 examples )
+                }
+                else {
+                    return Restaurant ( 3 examples )
+                    return Retail ( 8 examples )
+                }
+            }
+        }
+    }
+    else {
+        if ( Detergent <= 6931.5 ) {
+            if ( Frozen <= 3118.0 ) {
+                if ( Fresh <= 6277.5 ) {
+                    if ( Fresh <= 5310.0 ) {
+                        if ( Delicatessan <= 183.5 ) {
+                            return Restaurant ( 1 examples )
+                        }
+                        else {
+                            if ( Grocery <= 6921.0 ) {
+                                return Restaurant ( 1 examples )
+                            }
+                            else {
+                                if ( Grocery <= 15491.5 ) {
+                                    return Retail ( 22 examples )
+                                }
+                                else {
+                                    return Restaurant ( 1 examples )
+                                    return Retail ( 5 examples )
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        return Restaurant ( 2 examples )
+                        return Retail ( 1 examples )
+                    }
+                }
+                else {
+                    return Retail ( 29 examples )
+                }
+            }
+            else {
+                return Restaurant ( 4 examples )
+                return Retail ( 3 examples )
+            }
+        }
+        else {
+            return Retail ( 46 examples )
+        }
+    }
+}
