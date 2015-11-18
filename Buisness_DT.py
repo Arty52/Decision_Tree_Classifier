@@ -112,7 +112,9 @@ def main():
     X = df[features]
     
     # Use min_samples_split=20 to declare leaf bin if sample < 20
-    dt = DecisionTreeClassifier(min_samples_split=20, random_state=99, criterion='entropy')
+    dt = DecisionTreeClassifier(min_samples_split=20, 
+                                random_state=99, 
+                                criterion='entropy')
     # dt = DecisionTreeClassifier(random_state=99, criterion='entropy')
     
     
